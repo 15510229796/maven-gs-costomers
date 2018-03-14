@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/maven-gs-costomers.iml" filepath="$PROJECT_DIR$/maven-gs-costomers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-gs-costomers-controller/maven-gs-costomers-controller.iml" filepath="$PROJECT_DIR$/maven-gs-costomers-controller/maven-gs-costomers-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-gs-costomers-model/maven-gs-costomers-model.iml" filepath="$PROJECT_DIR$/maven-gs-costomers-model/maven-gs-costomers-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-gs-costomers-service/maven-gs-costomers-service.iml" filepath="$PROJECT_DIR$/maven-gs-costomers-service/maven-gs-costomers-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-gs-costomers-utils/maven-gs-costomers-utils.iml" filepath="$PROJECT_DIR$/maven-gs-costomers-utils/maven-gs-costomers-utils.iml" />
+    </modules>
+  </component>
+</project>

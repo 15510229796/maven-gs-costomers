@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="maven-gs-costomers-controller" />
+        <module name="maven-gs-costomers-model" />
+        <module name="maven-gs-costomers-service" />
+        <module name="maven-gs-costomers-utils" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="maven-gs-costomers" target="1.5" />
+      <module name="maven-gs-costomers-controller" target="1.5" />
+      <module name="maven-gs-costomers-model" target="1.5" />
+      <module name="maven-gs-costomers-service" target="1.5" />
+      <module name="maven-gs-costomers-utils" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

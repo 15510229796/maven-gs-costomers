@@ -1,0 +1,75 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+
+<!-- web.xml中shiro的filter对应的bean -->
+<!-- Shiro 的Web过滤器 
+   "shiroFilter"  shiro核心过滤
+-->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+	     <!--securityManager 安全管理器 认证和授权 缓存都在此管理器中配置  -->
+		<property name="securityManager" ref="securityManager" />
+		<!-- loginUrl认证提交地址，如果没有认证将会请求此地址进行认证，请求此地址将由formAuthenticationFilter进行表单认证 
+		               登录失败之后调用
+		-->
+		<property name="loginUrl" value="/login.do"/>
+		 <!-- 登陆成功后的页面 -->
+		<property name="successUrl" value="/jsp/showAll.jsp"/>
+
+		<property name="filters">
+			<map>
+				<!-- 将定义的formAuthenticationFilter注入到shiroFilter中 -->
+				<entry key="authc" value-ref="formAuthenticationFilter"></entry>
+			</map>
+		</property>
+		
+		<!-- 过虑器链定义，从上向下顺序执行，一般将/**放在最下边
+		     
+		 -->
+		<property name="filterChainDefinitions">
+			<value>
+				<!-- 对静态资源设置匿名访问 
+				     anon 表示放过所有拦截 即使没有权限也能够访问
+				-->
+				/logincss/** = anon
+				/js/** = anon
+				/img/** = anon
+				/photojs/** = anon
+			    /test.jsp=anon
+				 <!-- anon过滤器表示没有权限也可访问login.do 
+				      authc 必须通过认证才能访问
+				      /PowerAction/login.do 认证路径 可以随意写只要前台提交的登录路径与此路径一致就会进入认证方法进行认证
+				 -->
+				/login.do = authc
+				<!-- 请求 logout.action地址，shiro去清除session-->
+				/logout.do = logout
+				<!-- /** = authc 所有url都必须认证通过才可以访问-->
+				/** = authc
+				<!-- /** = anon所有url都可以匿名访问 -->
+			</value>
+		</property>
+	</bean>
+
+<!-- securityManager安全管理器 -->
+<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="customRealm" /> 
+</bean>
+	
+	<!-- realm 数据源 
+	            自定义realm  实现认证和授权功能
+	-->
+	<bean id="customRealm" class="com.jk.gs.controller.shiro.MyRealm"></bean>
+   <bean id="formAuthenticationFilter" class="com.jk.gs.controller.shiro.Myfilter">
+   </bean>
+</beans>
